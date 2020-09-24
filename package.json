@@ -1,5 +1,5 @@
 {
-  "name": "lua-node-resolver",
+  "name": "lnr",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
@@ -8,5 +8,9 @@
   "devDependencies": {
     "typescript": "^4.0.3",
     "typescript-to-lua": "^0.35.0"
+  },
+  "dependencies": {
+    "fs": "luapower/fs",
+    "path": "luapower/path"
   }
 }

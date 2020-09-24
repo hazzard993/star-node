@@ -2,10 +2,18 @@
 # yarn lockfile v1
 
 
+fs@luapower/fs:
+  version "0.0.0"
+  resolved "https://codeload.github.com/luapower/fs/tar.gz/f3681f4d49a4ee74aa99b068a980d1c5d202a0ae"
+
 path-parse@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+
+path@luapower/path:
+  version "0.0.0"
+  resolved "https://codeload.github.com/luapower/path/tar.gz/5bda8698327c671878f587f24fa60354df652ef2"
 
 resolve@^1.15.1:
   version "1.17.0"
