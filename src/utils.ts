@@ -1,21 +1,6 @@
-import * as path from "path";
+import { dir as directory, ext, nameext, combine, normalize } from "path";
 import { cd, dir } from "fs";
 import { DirIterator } from "./typings/fs";
-
-function findPackageDotJsonDirectory(): string | undefined {
-  let parentDirectory = cd();
-  while (parentDirectory) {
-    let containsPackageDotJson = false;
-    for (const [name] of dir(parentDirectory)) {
-      if (typeof name === "string" && name === "package.json") {
-        containsPackageDotJson = true;
-      }
-    }
-    if (containsPackageDotJson) break;
-    parentDirectory = path.dir(parentDirectory);
-  }
-  return parentDirectory;
-}
 
 type RockSpec = {
   build: Build;
@@ -28,6 +13,21 @@ type Build = {
 
 type Modules = Record<string, string>;
 
+function findPackageDotJsonDirectory(): string | undefined {
+  let parentDirectory = cd();
+  while (parentDirectory) {
+    let containsPackageDotJson = false;
+    for (const [name] of dir(parentDirectory)) {
+      if (typeof name === "string" && name === "package.json") {
+        containsPackageDotJson = true;
+      }
+    }
+    if (containsPackageDotJson) break;
+    parentDirectory = directory(parentDirectory);
+  }
+  return parentDirectory;
+}
+
 function readRockSpec(contents: string): RockSpec {
   const f = loadstring(contents);
   setfenv(f, {});
@@ -38,7 +38,7 @@ function readRockSpec(contents: string): RockSpec {
 function findRockSpec(moduleDirectory: DirIterator): string | undefined {
   for (const [fileName, d] of dir(moduleDirectory.path())) {
     if (typeof fileName === "string" && typeof d !== "string") {
-      const extension = path.ext(fileName);
+      const extension = ext(fileName);
       if (extension === "rockspec") {
         return d.path();
       }
@@ -46,10 +46,13 @@ function findRockSpec(moduleDirectory: DirIterator): string | undefined {
   }
 }
 
-function findFileWithName(name: string, moduleDirectory: DirIterator): string | undefined {
+function findFileWithName(
+  name: string,
+  moduleDirectory: DirIterator,
+): string | undefined {
   for (const [fileName, d] of dir(moduleDirectory.path())) {
     if (typeof fileName === "string" && typeof d !== "string") {
-      const [fileBaseName] = path.nameext(fileName);
+      const [fileBaseName] = nameext(fileName);
       if (fileBaseName === name) {
         return d.path();
       }
@@ -62,7 +65,7 @@ export function getModuleMappings(): Record<string, string> {
 
   const projectDirectory = findPackageDotJsonDirectory();
   if (projectDirectory) {
-    const [nodeModulesDirectory] = path.combine(projectDirectory, "node_modules");
+    const [nodeModulesDirectory] = combine(projectDirectory, "node_modules");
     if (nodeModulesDirectory) {
       for (const [moduleName, moduleDirectory] of dir(nodeModulesDirectory)) {
         if (typeof moduleDirectory !== "string") {
@@ -72,9 +75,12 @@ export function getModuleMappings(): Record<string, string> {
             const contents = file.read("*a");
             file.close();
             const spec = readRockSpec(contents);
-            Object.keys(spec.build.modules).forEach(key => {
+            Object.keys(spec.build.modules).forEach((key) => {
               const relativePath = spec.build.modules[key];
-              const [fullPath] = path.combine(moduleDirectory.path(), path.normalize(relativePath));
+              const [fullPath] = combine(
+                moduleDirectory.path(),
+                normalize(relativePath),
+              );
               mappings[key] = fullPath;
             });
           } else if (moduleName !== false) {
