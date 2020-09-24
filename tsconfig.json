@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "rootDir": "src",
+    "downlevelIteration": true
+  },
+  "tstl": {
+    "luaBundle": "node-resolver.lua",
+    "luaBundleEntry": "src/resolver.ts",
+    "noImplicitSelf": true
+  }
+}
