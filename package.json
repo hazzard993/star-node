@@ -1,14 +1,13 @@
 {
   "name": "star-node",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "scripts": {
     "build": "tstl -p tsconfig.json && copyfiles -f node_modules/path/*.lua node_modules/fs/*.lua run"
   },
   "files": [
-    "lib/**",
-    "init.lua",
-    "lnr.lua"
+    "run/**",
+    "run.lua"
   ],
   "devDependencies": {
     "copyfiles": "^2.3.0",
