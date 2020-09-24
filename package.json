@@ -5,12 +5,13 @@
   "scripts": {
     "build": "tstl -p tsconfig.json"
   },
-  "devDependencies": {
-    "typescript": "^4.0.3",
-    "typescript-to-lua": "^0.35.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "fs": "luapower/fs",
-    "path": "luapower/path"
+    "path": "luapower/path",
+    "typescript-to-lua": "^0.35.0"
+  },
+  "resolutions": {
+    "typescript": "4.0.3"
   }
 }
