@@ -20,4 +20,4 @@ package.preload["fs_win"] = function()
     return require(directory .. ".node_modules.fs.fs_win")
 end
 
-require(directory .. ".node-resolver")
+require(directory .. ".lnr")

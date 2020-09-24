@@ -5,7 +5,7 @@
     "downlevelIteration": true
   },
   "tstl": {
-    "luaBundle": "node-resolver.lua",
+    "luaBundle": "lnr.lua",
     "luaBundleEntry": "src/resolver.ts",
     "noImplicitSelf": true
   }
