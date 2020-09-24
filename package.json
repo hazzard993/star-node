@@ -1,10 +1,15 @@
 {
-  "name": "lnr",
+  "name": "lnrlua",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "build": "tstl -p tsconfig.json && copyfiles -f node_modules/path/*.lua node_modules/fs/*.lua lib"
   },
+  "files": [
+    "lib/**",
+    "init.lua",
+    "lnr.lua"
+  ],
   "devDependencies": {
     "copyfiles": "^2.3.0",
     "fs": "luapower/fs",
