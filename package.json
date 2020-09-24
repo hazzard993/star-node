@@ -1,6 +1,6 @@
 {
-  "name": "lnrlua",
-  "version": "0.0.1",
+  "name": "star-node",
+  "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "build": "tstl -p tsconfig.json && copyfiles -f node_modules/path/*.lua node_modules/fs/*.lua run"
