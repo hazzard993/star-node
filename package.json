@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "build": "tstl -p tsconfig.json"
+    "build": "tstl -p tsconfig.json && copyfiles -f node_modules/path/*.lua node_modules/fs/*.lua lib"
   },
-  "devDependencies": {},
-  "dependencies": {
+  "devDependencies": {
+    "copyfiles": "^2.3.0",
     "fs": "luapower/fs",
     "path": "luapower/path",
     "typescript-to-lua": "^0.35.0"
