@@ -41,9 +41,8 @@ require("foo")    --> C:/project/node_modules/module/internal/dir/foo.lua (this 
 
 ```sh
 yarn init -y
-yarn add rxi/lurker Olivine-Labs/luassert lua-star-node
+yarn add rxi/lurker rxi/lume lua-star-node
 echo "require('node_modules.lua-star-node.run')" > main.lua
 echo "print(require('lurker'))" >> main.lua
-echo "print(require('luassert'))" >> main.lua
 love --console .
 ```
