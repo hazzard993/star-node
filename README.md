@@ -16,5 +16,5 @@ require("foo")    --> node_modules/module/foo.lua
 **How to install**
 
 ```lua
-require("node-resolver") -- must point to node-resolver.lua at runtime
+require("node_modules.lnr.run")
 ```
